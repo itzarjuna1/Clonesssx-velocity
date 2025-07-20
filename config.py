@@ -9,24 +9,24 @@ from pyrogram import filters
 load_dotenv()
 # ------------------------------------
 # -----------------------------------------------------
-API_ID = int(getenv("API_ID", "28010019"))
-API_HASH = getenv("API_HASH", "d883bdb2619d7b940dcd81cdb8e0bf92")
+API_ID = int(getenv("API_ID", "24472937"))
+API_HASH = getenv("API_HASH", "da038362f56272bae92f22ece39e73e1")
 # ------------------------------------------------------
-BOT_TOKEN = getenv("BOT_TOKEN", "7824572624:AAG61XO2BkKFB-jY5DG3va8l7CbNWq4aoYs")
+BOT_TOKEN = getenv("BOT_TOKEN", "7564541101:AAGeeiFMZEh1irUh7d8sl68XsuAG29fzoKE")
 # -------------------------------------------------------
-OWNER_USERNAME = getenv("OWNER_USERNAME","untold_coder")
+OWNER_USERNAME = getenv("OWNER_USERNAME","ll_KUZE_ll")
 # --------------------------------------------------------
-BOT_USERNAME = getenv("BOT_USERNAME" , "leharmusic_bot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "velocityxrobot")
 # --------------------------------------------------------
-BOT_NAME = getenv("BOT_NAME" , "lehar")
+BOT_NAME = getenv("BOT_NAME" , "velocity x music")
 # ---------------------------------------------------------
-ASSUSERNAME = getenv("ASSUSERNAME" , "lehar")
+ASSUSERNAME = getenv("ASSUSERNAME" , "velocityassist")
 # ---------------------------------------------------------
 
 
 #---------------------------------------------------------------
 #---------------------------------------------------------------
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://coder:coder@coder.htbxi.mongodb.net/?retryWrites=true&w=majority")
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://knight4563:knight4563@cluster0.a5br0se.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 API_KEY = getenv("API_KEY")
 #---------------------------------------------------------------
 #---------------------------------------------------------------
@@ -36,10 +36,10 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 # ----------------------------------------------------------------
 
 # ----------------------------------------------------------------
-LOGGER_ID = int(getenv("LOGGER_ID", -1002136457746))
+LOGGER_ID = int(getenv("LOGGER_ID", -1002825379503))
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
-OWNER_ID = int(getenv("OWNER_ID", 6391774843))
+OWNER_ID = int(getenv("OWNER_ID", 7926944005))
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
 # config.py
@@ -54,7 +54,7 @@ HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 # ----------------------------------------------------------------
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/MOON-CODES/Clonesss",
+    "https://github.com/itzarjuna1/Clonesssx-velocity",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
 GIT_TOKEN = getenv(
@@ -68,10 +68,10 @@ GIT_TOKEN = getenv(
 
 # ------------------------------------------------------------------------
 # -------------------------------------------------------------------------
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/untold_coder")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/world_friend_chatting_zone")
-SOURCE = getenv("SOURCE", "https://t.me/Moon_Music_Updates")
-CHAT = getenv("CHAT", "https://t.me/world_friend_chatting_zone")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/dark_x_knight_musiczz_support")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/dark_knight_support")
+SOURCE = getenv("SOURCE", "https://t.me/+3CTsVQWepswwY2Vk")
+CHAT = getenv("CHAT", "https://t.me/+3CTsVQWepswwY2Vk")
 # ------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------
 
@@ -117,7 +117,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
 # ------------------------------------
 # ------------------------------------
 # ------------------------------------
-STRING1 = getenv("STRING_SESSION", "BQGrZiMAWaJYVyqh_yBkAnEHtHkclEL9lRXo0RKXuzP6NP0PUJq9F3cyJx7zXnGtfQ5ngwRbXP1Ov81TnpYsNP-RtjHMKMytLNyzGI5V5K9eQpCyiHqdff9aqNKK_OgaO99mC4z5dM8bubUcYQ4wRueBmZ4OaJpECPK6itHrMQlWmxXOdU4iaWjxwVArFBkPIaP1M2JpXq_S3LDS__Fyl9sZn0zgrqe_IEfTO6Z6GkbzappRuelp-sTgIJ2wd6UWBeAqlBua4Gh5hlE_8ngIYhUDacYvbqu88Mawoi1zpj4nXFkl5gGjZ1BhAXDsM6odSqjTD8BWe_VOdqXYxo7vYbnZ7aSG8QAAAAHlyy_cAA")
+STRING1 = getenv("STRING_SESSION", "AQF1bWkAvcddsD1ZP4pv2Y_y4OtXEMtwmm5U6yHga4AwfonIanjiKY73SHHkKO-OLLmr2JAvI1d5eXUdd1v8i3j7xxjY3snudZr7l-vUKDpRLN9-hoWNgy4V5JSI-m57BH3eWOXSZPk5Rwbz0aUcDLTZ6VPZeDyajkxzbOA0mCHWIxipNW9NyQ5iMmf5TUH61Ynm-nK2FHNx0QL_jl2ZwcSxwO6Srqb8swUPtDTk1bf54WDHK5NSf_2N-Ro13v03nhRXy-pPWVOtn5FlimIvUFoZ0m8zGwWgI1Ih5KsB4k4Ek61sHFtyKGf5fpTvDA7s4WQIeO-Hj90Mm28OTsseh9HdmYXISAAAAAHLfwdkAA")
 STRING2 = getenv("STRING_SESSION2", None)
 BANNED_USERS = filters.user()
 adminlist = {}
