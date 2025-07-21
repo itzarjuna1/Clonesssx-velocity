@@ -9,10 +9,10 @@ from pyrogram import filters
 load_dotenv()
 # ------------------------------------
 # -----------------------------------------------------
-API_ID = int(getenv("API_ID", "24472937"))
-API_HASH = getenv("API_HASH", "da038362f56272bae92f22ece39e73e1")
+API_ID = int(getenv("API_ID", ""))
+API_HASH = getenv("API_HASH", "")
 # ------------------------------------------------------
-BOT_TOKEN = getenv("BOT_TOKEN", "7564541101:AAGeeiFMZEh1irUh7d8sl68XsuAG29fzoKE")
+BOT_TOKEN = getenv("BOT_TOKEN", "")
 # -------------------------------------------------------
 OWNER_USERNAME = getenv("OWNER_USERNAME","ll_KUZE_ll")
 # --------------------------------------------------------
@@ -117,7 +117,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
 # ------------------------------------
 # ------------------------------------
 # ------------------------------------
-STRING1 = getenv("STRING_SESSION", "AQF1bWkAvcddsD1ZP4pv2Y_y4OtXEMtwmm5U6yHga4AwfonIanjiKY73SHHkKO-OLLmr2JAvI1d5eXUdd1v8i3j7xxjY3snudZr7l-vUKDpRLN9-hoWNgy4V5JSI-m57BH3eWOXSZPk5Rwbz0aUcDLTZ6VPZeDyajkxzbOA0mCHWIxipNW9NyQ5iMmf5TUH61Ynm-nK2FHNx0QL_jl2ZwcSxwO6Srqb8swUPtDTk1bf54WDHK5NSf_2N-Ro13v03nhRXy-pPWVOtn5FlimIvUFoZ0m8zGwWgI1Ih5KsB4k4Ek61sHFtyKGf5fpTvDA7s4WQIeO-Hj90Mm28OTsseh9HdmYXISAAAAAHLfwdkAA")
+STRING1 = getenv("STRING_SESSION", "")
 STRING2 = getenv("STRING_SESSION2", None)
 BANNED_USERS = filters.user()
 adminlist = {}
