@@ -173,3 +173,13 @@ async def play_commnd(client, message: Message, _, chat_id, video, channel, play
         reply_markup=InlineKeyboardMarkup(buttons)
     )
     return await play_logs(message, streamtype="Youtube Search")
+
+
+from BABYMUSIC import userbot
+
+@userbot.on_message(
+    filters.command(["play", "vplay", "cplay", "cvplay"]) & filters.group
+)
+@CPlayWrapper
+async def userbot_play(client, message, *args):
+    return await play_commnd(client, message, *args)
