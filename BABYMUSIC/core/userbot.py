@@ -1,58 +1,70 @@
-from pyrogram import Client
-import config
-from ..logging import LOGGER
+import asyncio
+import importlib
 
-assistants = []
-assistantids = []
+from pyrogram import idle
+from pytgcalls.exceptions import NoActiveGroupCall
 
-class Userbot(Client):
-    def __init__(self):
-        self.one = Client(
-            name="BABYAss1",
-            api_id=config.API_ID,
-            api_hash=config.API_HASH,
-            session_string=str(config.STRING1),
-            no_updates=True,
+from config import BANNED_USERS, STRING1
+from BABYMUSIC import LOGGER, app, userbot
+from BABYMUSIC.core.call import BABY
+from BABYMUSIC.misc import sudo
+from BABYMUSIC.plugins import ALL_MODULES
+from BABYMUSIC.utils.database import get_banned_users, get_gbanned
+from BABYMUSIC.plugins.tools.clone import restart_bots
+
+
+async def init():
+    if not STRING1:
+        LOGGER(__name__).error("⚠️ STRING1 is missing! Fill it in config.py or .env.")
+        return
+
+    await sudo()
+
+    # Load global bans
+    try:
+        gbanned = await get_gbanned()
+        for user_id in gbanned:
+            BANNED_USERS.add(user_id)
+
+        banned = await get_banned_users()
+        for user_id in banned:
+            BANNED_USERS.add(user_id)
+
+    except Exception as e:
+        LOGGER("BABYMUSIC").warning(f"Failed to fetch banned users: {e}")
+
+    # Start clients
+    await app.start()
+    await userbot.start()
+
+    # Import all plugins
+    for module in ALL_MODULES:
+        importlib.import_module(f"BABYMUSIC.plugins.{module}")
+    LOGGER("BABYMUSIC.plugins").info("✅ All Plugin Modules Loaded Successfully!")
+
+    # Start PyTgCalls
+    await BABY.start()
+    try:
+        await BABY.stream_call("https://te.legra.ph/file/29f784eb49d230ab62e9e.mp4")
+    except NoActiveGroupCall:
+        LOGGER("BABYMUSIC").error(
+            "❌ Start a voice chat in the log group/channel to enable streaming!"
         )
+        return
+    except Exception as e:
+        LOGGER("BABYMUSIC").warning(f"Stream call failed: {e}")
 
-    async def start(self):
-        LOGGER(__name__).info("Starting Assistants...")
+    await BABY.decorators()
+    await restart_bots()
 
-        if config.STRING1:
-            await self.one.start()
-            try:
-                await self.one.join_chat("world_friend_chatting_zone")
-                await self.one.join_chat("world_friend_chatting_zone")
-            except:
-                pass
+    LOGGER("BABYMUSIC").info("🤖 Infinity AI Music Bot Started Successfully!")
+    await idle()
 
-            # Fetch bot user details
-            self.one.me = await self.one.get_me()
-            self.one.id = self.one.me.id
-            self.one.name = self.one.me.mention
-            self.one.username = self.one.me.username
-
-            assistants.append(1)
-            assistantids.append(self.one.id)
-
-            try:
-                await self.one.send_message(config.LOGGER_ID, "✅ Assistant Started")
-            except:
-                LOGGER(__name__).error(
-                    "❌ Assistant 1 couldn't access the log group. Make sure it's added & admin."
-                )
-                exit()
-
-            LOGGER(__name__).info(f"Assistant Started as {self.one.name}")
-
-    async def stop(self):
-        LOGGER(__name__).info("Stopping Assistants...")
-        try:
-            if config.STRING1:
-                await self.one.stop()
-        except:
-            pass
+    # Shutdown
+    await app.stop()
+    await userbot.stop()
+    LOGGER("BABYMUSIC").info("🛑 Bot Stopped Cleanly.")
 
 
-# Make an instance that can be imported
-userbot = Userbot()
+if __name__ == "__main__":
+    asyncio.run(init())
