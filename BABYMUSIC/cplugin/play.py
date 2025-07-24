@@ -39,13 +39,18 @@ SPAM_THRESHOLD = 2
 SPAM_WINDOW_SECONDS = 5
 
 @app.on_message(
-    filters.command([
-        "play", "vplay", "cplay", "cvplay",
-        "playforce", "vplayforce", "cplayforce", "cvplayforce"
-    ], prefixes=["/", "!", "%", "", ".", "@", "#"])
+    filters.command([...])
     & filters.group
     & ~BANNED_USERS
 )
+@userbot.on_message(
+    filters.command([...])
+    & filters.group
+    & ~BANNED_USERS
+)
+@CPlayWrapper
+async def play_commnd(...):
+    ...
 @CPlayWrapper
 async def play_commnd(client, message: Message, _, chat_id, video, channel, playmode, url, fplay):
     user_id = message.from_user.id
