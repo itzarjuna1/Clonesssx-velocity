@@ -3,7 +3,7 @@ import random
 import string
 import asyncio
 from time import time
-from pyrogram import Client, filters
+from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 from pytgcalls.exceptions import NoActiveGroupCall
 
@@ -39,18 +39,11 @@ SPAM_THRESHOLD = 2
 SPAM_WINDOW_SECONDS = 5
 
 @app.on_message(
-    filters.command([...])
-    & filters.group
-    & ~BANNED_USERS
+    filters.command(
+        ["play", "vplay", "cplay", "cvplay", "playforce", "vplayforce", "cplayforce", "cvplayforce"],
+        prefixes=["/", "!", ".", "", "#", "@", "%"]
+    ) & filters.group & ~BANNED_USERS
 )
-@userbot.on_message(
-    filters.command([...])
-    & filters.group
-    & ~BANNED_USERS
-)
-@CPlayWrapper
-async def play_commnd(...):
-    ...
 @CPlayWrapper
 async def play_commnd(client, message: Message, _, chat_id, video, channel, playmode, url, fplay):
     user_id = message.from_user.id
@@ -62,7 +55,7 @@ async def play_commnd(client, message: Message, _, chat_id, video, channel, play
         user_command_count[user_id] = user_command_count.get(user_id, 0) + 1
         if user_command_count[user_id] > SPAM_THRESHOLD:
             hu = await message.reply_text(
-                f"**{message.from_user.mention} ᴘʟᴇᴀsᴇ ᴅᴏɴᴛ sᴘᴀᴍ, ᴛʀʏ ᴀɢᴀɪɴ ᴀғᴛᴇʀ 5 sᴇᴄ**"
+                f"**{message.from_user.mention} ᴘʟᴇᴀsᴇ ᴅᴏɴ'ᴛ sᴘᴀᴍ, ᴛʀʏ ᴀɢᴀɪɴ ᴀғᴛᴇʀ 5 sᴇᴄ**"
             )
             await asyncio.sleep(3)
             return await hu.delete()
@@ -73,7 +66,7 @@ async def play_commnd(client, message: Message, _, chat_id, video, channel, play
     await add_served_chat_clone(message.chat.id)
     mystic = await message.reply_text(_["play_2"].format(channel) if channel else _["play_1"])
 
-    # Telegram audio/video
+    # Telegram file
     if message.reply_to_message:
         if message.reply_to_message.audio or message.reply_to_message.voice:
             audio = message.reply_to_message.audio or message.reply_to_message.voice
@@ -121,7 +114,7 @@ async def play_commnd(client, message: Message, _, chat_id, video, channel, play
                     return await mystic.edit_text(str(e))
                 return await mystic.delete()
 
-    # URL or search query
+    # URL or Query
     if url:
         try:
             if await YouTube.exists(url):
@@ -152,6 +145,7 @@ async def play_commnd(client, message: Message, _, chat_id, video, channel, play
             await message.reply_photo(photo=img, caption=cap, reply_markup=InlineKeyboardMarkup(buttons))
             return await play_logs(message, streamtype=streamtype)
 
+    # Search Query
     if len(message.command) < 2:
         buttons = botplaylist_markup(_)
         return await mystic.edit_text(_["play_18"], reply_markup=InlineKeyboardMarkup(buttons))
@@ -173,5 +167,9 @@ async def play_commnd(client, message: Message, _, chat_id, video, channel, play
 
     buttons = slider_markup(_, track_id, user_id, query, 0, "c" if channel else "g", "f" if fplay else "d")
     await mystic.delete()
-    await message.reply_photo(photo=details["thumb"], caption=_["play_10"].format(details["title"], details["duration_min"]), reply_markup=InlineKeyboardMarkup(buttons))
+    await message.reply_photo(
+        photo=details["thumb"],
+        caption=_["play_10"].format(details["title"], details["duration_min"]),
+        reply_markup=InlineKeyboardMarkup(buttons)
+    )
     return await play_logs(message, streamtype="Youtube Search")
