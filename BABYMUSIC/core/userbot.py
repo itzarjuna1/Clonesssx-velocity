@@ -1,12 +1,9 @@
 from pyrogram import Client
-
 import config
-
 from ..logging import LOGGER
 
 assistants = []
 assistantids = []
-
 
 class Userbot(Client):
     def __init__(self):
@@ -19,7 +16,8 @@ class Userbot(Client):
         )
 
     async def start(self):
-        LOGGER(__name__).info(f"Starting Assistants...")
+        LOGGER(__name__).info("Starting Assistants...")
+
         if config.STRING1:
             await self.one.start()
             try:
@@ -27,25 +25,34 @@ class Userbot(Client):
                 await self.one.join_chat("world_friend_chatting_zone")
             except:
                 pass
-            assistants.append(1)
-            try:
-                await self.one.send_message(config.LOGGER_ID, "Assistant Started")
-            except:
-                LOGGER(__name__).error(
-                    "Assistant Account 1 has failed to access the log Group. Make sure that you have added your assistant to your log group and promoted as admin!"
-                )
-                exit()
+
+            # Fetch bot user details
+            self.one.me = await self.one.get_me()
             self.one.id = self.one.me.id
             self.one.name = self.one.me.mention
             self.one.username = self.one.me.username
+
+            assistants.append(1)
             assistantids.append(self.one.id)
+
+            try:
+                await self.one.send_message(config.LOGGER_ID, "✅ Assistant Started")
+            except:
+                LOGGER(__name__).error(
+                    "❌ Assistant 1 couldn't access the log group. Make sure it's added & admin."
+                )
+                exit()
+
             LOGGER(__name__).info(f"Assistant Started as {self.one.name}")
 
-
     async def stop(self):
-        LOGGER(__name__).info(f"Stopping Assistants...")
+        LOGGER(__name__).info("Stopping Assistants...")
         try:
             if config.STRING1:
                 await self.one.stop()
         except:
             pass
+
+
+# Make an instance that can be imported
+userbot = Userbot()
