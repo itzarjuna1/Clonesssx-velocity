@@ -8,7 +8,7 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 from pytgcalls.exceptions import NoActiveGroupCall
 
 from config import BANNED_USERS, lyrical
-from BABYMUSIC import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app
+from BABYMUSIC import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app, userbot  # Both bots
 from BABYMUSIC.core.call import BABY
 from BABYMUSIC.misc import SUDOERS
 from BABYMUSIC.utils import seconds_to_min, time_to_seconds
@@ -38,6 +38,7 @@ user_command_count = {}
 SPAM_THRESHOLD = 2
 SPAM_WINDOW_SECONDS = 5
 
+# Both main bot and clone bot listen to the play command in groups
 @app.on_message(
     filters.command(
         ["play", "vplay", "cplay", "cvplay", "playforce", "vplayforce", "cplayforce", "cvplayforce"],
@@ -46,7 +47,7 @@ SPAM_WINDOW_SECONDS = 5
     & filters.group
     & ~BANNED_USERS
 )
-@userbot.on_message(  # ✅ Clone also listens to same command
+@userbot.on_message(  # ✅ Clone bot listens too
     filters.command(
         ["play", "vplay", "cplay", "cvplay", "playforce", "vplayforce", "cplayforce", "cvplayforce"],
         prefixes=["/", "!", "%", "", ".", "@", "#"]
@@ -54,14 +55,9 @@ SPAM_WINDOW_SECONDS = 5
     & filters.group
     & ~BANNED_USERS
 )
-async def play_command(client: Client, message: Message):
-    # ✅ Now both main bot & clone can handle /play
-    ...
 @CPlayWrapper
-async def play_commnd(...):
-    ...
-@CPlayWrapper
-async def play_commnd(client, message: Message, _, chat_id, video, channel, playmode, url, fplay):
+async def play_command(client: Client, message: Message, _, chat_id, video, channel, playmode, url, fplay):
+    # Handle user spam tracking
     user_id = message.from_user.id
     current_time = time()
     last_message_time = user_last_message_time.get(user_id, 0)
@@ -79,10 +75,11 @@ async def play_commnd(client, message: Message, _, chat_id, video, channel, play
         user_command_count[user_id] = 1
         user_last_message_time[user_id] = current_time
 
+    # Handle adding the served chat for the clone bot
     await add_served_chat_clone(message.chat.id)
     mystic = await message.reply_text(_["play_2"].format(channel) if channel else _["play_1"])
 
-    # Telegram audio/video
+    # Process Telegram audio/video
     if message.reply_to_message:
         if message.reply_to_message.audio or message.reply_to_message.voice:
             audio = message.reply_to_message.audio or message.reply_to_message.voice
@@ -161,6 +158,7 @@ async def play_commnd(client, message: Message, _, chat_id, video, channel, play
             await message.reply_photo(photo=img, caption=cap, reply_markup=InlineKeyboardMarkup(buttons))
             return await play_logs(message, streamtype=streamtype)
 
+    # Handle search queries
     if len(message.command) < 2:
         buttons = botplaylist_markup(_)
         return await mystic.edit_text(_["play_18"], reply_markup=InlineKeyboardMarkup(buttons))
