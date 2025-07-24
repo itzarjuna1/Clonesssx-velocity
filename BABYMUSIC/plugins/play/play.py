@@ -661,3 +661,13 @@ async def slider_queries(client, CallbackQuery, _):
         return await CallbackQuery.edit_message_media(
             media=med, reply_markup=InlineKeyboardMarkup(buttons)
         )
+from BABYMUSIC import userbot
+from BABYMUSIC.utils.decorators.play import PlayWrapper
+from BABYMUSIC.modules.play import play_commnd  # ya jahan se bhi tu play_commnd use kar raha
+
+@userbot.on_message(
+    filters.command(["play", "vplay", "cplay", "cvplay"]) & filters.group
+)
+@PlayWrapper
+async def userbot_play(client, message, *args):
+    return await play_commnd(client, message, *args)
