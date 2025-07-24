@@ -39,15 +39,24 @@ SPAM_THRESHOLD = 2
 SPAM_WINDOW_SECONDS = 5
 
 @app.on_message(
-    filters.command([...])
+    filters.command(
+        ["play", "vplay", "cplay", "cvplay", "playforce", "vplayforce", "cplayforce", "cvplayforce"],
+        prefixes=["/", "!", "%", "", ".", "@", "#"]
+    )
     & filters.group
     & ~BANNED_USERS
 )
-@userbot.on_message(
-    filters.command([...])
+@userbot.on_message(  # ✅ Clone also listens to same command
+    filters.command(
+        ["play", "vplay", "cplay", "cvplay", "playforce", "vplayforce", "cplayforce", "cvplayforce"],
+        prefixes=["/", "!", "%", "", ".", "@", "#"]
+    )
     & filters.group
     & ~BANNED_USERS
 )
+async def play_command(client: Client, message: Message):
+    # ✅ Now both main bot & clone can handle /play
+    ...
 @CPlayWrapper
 async def play_commnd(...):
     ...
