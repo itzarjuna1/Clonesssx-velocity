@@ -3,7 +3,7 @@ aiohttp
 apscheduler
 asyncio
 bard
-bing_image_downloader 
+bing-image-downloader
 beautifulsoup4
 bs4
 cloudscraper
@@ -24,7 +24,7 @@ httpx==0.27.0
 img2pdf
 instaloader
 lexica-api
-motor 
+motor
 MukeshAPI
 numpy<2.0.0
 openai==0.28.0
@@ -32,7 +32,7 @@ opencv-python
 pillow==9.5.0
 psutil
 pickledb
-pornhub-api==0.3.0
+pornhub-api==0.4.0   # 🔥 fixed (0.3.0 hata kar 0.4.0 kiya)
 pycountry
 pycryptodome
 pydub
@@ -51,7 +51,7 @@ pyyaml==6.0.1
 qrcode
 requests
 SafoneAPI
-search_engine_parser
+search-engine-parser   # 🔥 fixed name (underscore → hyphen)
 speedtest-cli
 SpeechRecognition
 spotipy
