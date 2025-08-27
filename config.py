@@ -9,18 +9,18 @@ from pyrogram import filters
 load_dotenv()
 # ------------------------------------
 # -----------------------------------------------------
-API_ID = int(getenv("API_ID", ""))
-API_HASH = getenv("API_HASH", "")
+API_ID = int(getenv("API_ID", "27263782"))
+API_HASH = getenv("API_HASH", "d7b791118bced0eff4ca83f0d979e964")
 # ------------------------------------------------------
 BOT_TOKEN = getenv("BOT_TOKEN", "")
 # -------------------------------------------------------
-OWNER_USERNAME = getenv("OWNER_USERNAME","ll_KUZE_ll")
+OWNER_USERNAME = getenv("OWNER_USERNAME","GodxSharma")
 # --------------------------------------------------------
-BOT_USERNAME = getenv("BOT_USERNAME" , "velocityxrobot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "@HydraxMusic_bot")
 # --------------------------------------------------------
-BOT_NAME = getenv("BOT_NAME" , "velocity x music")
+BOT_NAME = getenv("BOT_NAME" , "Hydra x music")
 # ---------------------------------------------------------
-ASSUSERNAME = getenv("ASSUSERNAME" , "velocityassist")
+ASSUSERNAME = getenv("ASSUSERNAME" , "hydraassist")
 # ---------------------------------------------------------
 
 
@@ -36,10 +36,10 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 # ----------------------------------------------------------------
 
 # ----------------------------------------------------------------
-LOGGER_ID = int(getenv("LOGGER_ID", -1002733628393))
+LOGGER_ID = int(getenv("LOGGER_ID", -1002673174815))
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
-OWNER_ID = int(getenv("OWNER_ID", 7926944005))
+OWNER_ID = int(getenv("OWNER_ID", 1129848570))
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
 # config.py
@@ -68,10 +68,10 @@ GIT_TOKEN = getenv(
 
 # ------------------------------------------------------------------------
 # -------------------------------------------------------------------------
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/dark_x_knight_musiczz_support")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/dark_knight_support")
-SOURCE = getenv("SOURCE", "https://t.me/+3CTsVQWepswwY2Vk")
-CHAT = getenv("CHAT", "https://t.me/+3CTsVQWepswwY2Vk")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/Hydrax_Music_update")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/Hydrax_Music_update")
+SOURCE = getenv("SOURCE", "https://t.me/+zyocLmf3JvIwOWY9")
+CHAT = getenv("CHAT", "https://t.me/+zyocLmf3JvIwOWY9")
 # ------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------
 
@@ -139,7 +139,7 @@ confirmer = {}
 # ------------------------------------------------------------------------
 # ------------------------------------------------------------------------
 START_IMG_URL = getenv(
-    "START_IMG_URL", "https://i.ibb.co/h9XdzGp/IMG-20250103-174105-243.jpg"
+    "START_IMG_URL", "https://graph.org/file/6d4d2eb63e12f3b72a707-14d93d083b96ca079b.jpg"
 )
 PING_IMG_URL = getenv(
     "PING_IMG_URL", "https://i.ibb.co/h9XdzGp/IMG-20250103-174105-243.jpg"
